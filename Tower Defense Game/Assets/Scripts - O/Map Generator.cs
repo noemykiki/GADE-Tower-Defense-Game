@@ -9,8 +9,6 @@ public class MapGenerator : MonoBehaviour
     public GameObject MapTile;
     public Sprite PathTileSprite;
     private GameObject currentTile;
-    GameObject startTile;
-    GameObject endTile;
     private bool reachedX ;
     private bool reachedY ;  
     private int currentIndex;
@@ -19,9 +17,10 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private int mapWidth; //map width
     [SerializeField] private int mapHeight; //map height
 
-    private List<GameObject> mapTiles = new List<GameObject>(); //list of tiles on map
-    private List<GameObject> pathTiles = new List<GameObject>(); //list of path tiles
-
+    public static List<GameObject> mapTiles = new List<GameObject>(); //list of tiles on map
+    public static List<GameObject> pathTiles = new List<GameObject>(); //list of path tiles
+    public static GameObject startTile;
+    public static GameObject endTile;
     // Start is called before the first frame update
     void Start()
     {
