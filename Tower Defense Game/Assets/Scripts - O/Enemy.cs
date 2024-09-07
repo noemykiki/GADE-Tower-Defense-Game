@@ -8,7 +8,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float enemyHealth;
-    [SerializeField] private float enemySpeed;
+  [SerializeField]  private float enemySpeed;
     private int reward;
     private int damage;
     private GameObject targetTile;

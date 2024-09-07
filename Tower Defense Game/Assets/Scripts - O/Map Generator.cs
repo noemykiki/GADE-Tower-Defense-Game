@@ -9,8 +9,8 @@ public class MapGenerator : MonoBehaviour
     public GameObject MapTile;
     public Sprite PathTileSprite;
     private GameObject currentTile;
-    private bool reachedX ;
-    private bool reachedY ;  
+    private bool reachedX;
+    private bool reachedY;
     private int currentIndex;
     private int nextIndex;
 
@@ -49,7 +49,7 @@ public class MapGenerator : MonoBehaviour
         }
         return edgeTiles;
     }
-   
+
     private void moveDown()
     {
         pathTiles.Add(currentTile);
@@ -63,7 +63,7 @@ public class MapGenerator : MonoBehaviour
         pathTiles.Add(currentTile);
         currentIndex = mapTiles.IndexOf(currentTile);
         nextIndex = currentIndex - 1;
-        currentTile = mapTiles[nextIndex];  
+        currentTile = mapTiles[nextIndex];
     }
 
     private void moveRight()
@@ -88,18 +88,18 @@ public class MapGenerator : MonoBehaviour
 
         List<GameObject> topTiles = getTopTiles();     //list of the tiles at the top of the map
         List<GameObject> bottomTiles = getBottomTiles(); // list of tiles at the bottom of the map
-       
-           
-            int ranBottom = UnityEngine.Random.Range(0, mapWidth); //random number to choose a tile at the bottom of the map
-           
-            
-            endTile = bottomTiles[ranBottom];
+
+
+        int ranBottom = UnityEngine.Random.Range(0, mapWidth); //random number to choose a tile at the bottom of the map
+
+
+        endTile = bottomTiles[ranBottom];
         for (int i = 0; i < 3; i++)
         {
             reachedX = false;
             reachedY = false;
 
-     
+
             int randTop = UnityEngine.Random.Range(0, mapWidth);  //random number to choose a tile at the top of the map
             int ranMove = UnityEngine.Random.Range(1, mapHeight - 1);
 
@@ -161,7 +161,4 @@ public class MapGenerator : MonoBehaviour
     }
 
 }
-
-
-
 
