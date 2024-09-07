@@ -19,7 +19,7 @@ public class MapGenerator : MonoBehaviour
 
     public static List<GameObject> mapTiles = new List<GameObject>(); //list of tiles on map
     public static List<GameObject> pathTiles = new List<GameObject>(); //list of path tiles
-    public static GameObject startTile;
+    public static GameObject[] startTile = new GameObject[3];
     public static GameObject endTile;
     // Start is called before the first frame update
     void Start()
@@ -49,6 +49,7 @@ public class MapGenerator : MonoBehaviour
         }
         return edgeTiles;
     }
+
 
     private void moveDown()
     {
@@ -103,9 +104,9 @@ public class MapGenerator : MonoBehaviour
             int randTop = UnityEngine.Random.Range(0, mapWidth);  //random number to choose a tile at the top of the map
             int ranMove = UnityEngine.Random.Range(1, mapHeight - 1);
 
-            startTile = topTiles[randTop];
+            startTile[i] = topTiles[randTop];
 
-            currentTile = startTile;
+            currentTile = startTile[i];
 
             for (int j = 0; j < ranMove; j++)
             {

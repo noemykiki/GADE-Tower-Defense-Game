@@ -26,7 +26,8 @@ public class Enemy : MonoBehaviour
 
     private void inisitaliseEnemy()
     {
-        targetTile = MapGenerator.startTile;
+        int randomIndex = UnityEngine.Random.Range(0, MapGenerator.startTile.Length);
+        targetTile = MapGenerator.startTile[randomIndex];
     }
 
     private void enemyMovement()
