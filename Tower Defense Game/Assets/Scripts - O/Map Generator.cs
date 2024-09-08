@@ -7,19 +7,20 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour
 {
     public GameObject MapTile;
+    public Sprite PathTileSprite;
     private GameObject currentTile;
-    GameObject startTile;
-    GameObject endTile;
-    private bool reachedX = false;
+    private bool reachedX;
+    private bool reachedY;
     private int currentIndex;
     private int nextIndex;
 
     [SerializeField] private int mapWidth; //map width
     [SerializeField] private int mapHeight; //map height
 
-    private List<GameObject> mapTiles = new List<GameObject>(); //list of tiles on map
-    private List<GameObject> pathTiles = new List<GameObject>(); //list of path tiles
-
+    public static List<GameObject> mapTiles = new List<GameObject>(); //list of tiles on map
+    public static List<GameObject> pathTiles = new List<GameObject>(); //list of path tiles
+    public static GameObject[] startTile = new GameObject[3];
+    public static GameObject endTile;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,19 +50,29 @@ public class MapGenerator : MonoBehaviour
         return edgeTiles;
     }
 
+
     private void moveDown()
     {
-
+        pathTiles.Add(currentTile);
+        currentIndex = mapTiles.IndexOf(currentTile);
+        nextIndex = currentIndex - mapWidth;
+        currentTile = mapTiles[nextIndex];
     }
 
     private void moveLeft()
     {
-
+        pathTiles.Add(currentTile);
+        currentIndex = mapTiles.IndexOf(currentTile);
+        nextIndex = currentIndex - 1;
+        currentTile = mapTiles[nextIndex];
     }
 
     private void moveRight()
     {
-
+        pathTiles.Add(currentTile);
+        currentIndex = mapTiles.IndexOf(currentTile);
+        nextIndex = currentIndex + 1;
+        currentTile = mapTiles[nextIndex];
     }
 
     private void generateMap() // generates map
@@ -79,28 +90,76 @@ public class MapGenerator : MonoBehaviour
         List<GameObject> topTiles = getTopTiles();     //list of the tiles at the top of the map
         List<GameObject> bottomTiles = getBottomTiles(); // list of tiles at the bottom of the map
 
-        int randTop = UnityEngine.Random.Range(0, mapWidth);  //random number to choose a tile at the top of the map
+
         int ranBottom = UnityEngine.Random.Range(0, mapWidth); //random number to choose a tile at the bottom of the map
 
-        startTile = topTiles[randTop];
+
         endTile = bottomTiles[ranBottom];
-        currentTile = startTile;
-        while (!reachedX)
+        for (int i = 0; i < 3; i++)
         {
-            if (currentTile.transform.position.x > endTile.transform.position.x)
+            reachedX = false;
+            reachedY = false;
+
+
+            int randTop = UnityEngine.Random.Range(0, mapWidth);  //random number to choose a tile at the top of the map
+            int ranMove = UnityEngine.Random.Range(1, mapHeight - 1);
+
+            startTile[i] = topTiles[randTop];
+
+            currentTile = startTile[i];
+
+            for (int j = 0; j < ranMove; j++)
             {
-                moveLeft();
+                moveDown();
             }
-            else if (currentTile.transform.position.x < endTile.transform.position.x)
+
+
+            int loop = 0;
+            while (!reachedX)
             {
-                moveRight();
+                loop++;
+                if (loop > 1000)
+                {
+                    break;
+                }
+
+                if (currentTile.transform.position.x > endTile.transform.position.x)
+                {
+                    moveLeft();
+                }
+                else if (currentTile.transform.position.x < endTile.transform.position.x)
+                {
+                    moveRight();
+                }
+                else
+                {
+                    reachedX = true;
+                }
+            }
+
+            while (!reachedY)
+            {
+                if (currentTile.transform.position.y > endTile.transform.position.y)
+                {
+                    moveDown();
+                }
+                else
+                {
+                    reachedY = true;
+                }
+            }
+
+            pathTiles.Add(endTile);
+            foreach (GameObject obj in pathTiles)
+            {
+                SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.sprite = PathTileSprite;  // Set the path sprite
+                }
             }
         }
-
     }
 
 }
-
-
-
 
