@@ -35,4 +35,9 @@ public class SceneManagerScript : MonoBehaviour
             Debug.Log("No more scenes to load!");
         }
     }
+    
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 }
