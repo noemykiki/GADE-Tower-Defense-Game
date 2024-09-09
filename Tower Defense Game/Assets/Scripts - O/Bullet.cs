@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -15,7 +17,9 @@ public class Bullet : MonoBehaviour
             if (tower.currentTarget != null)
             {
                 Vector2 relative = tower.currentTarget.transform.position - pivot.position;
-                float angle = Mathf.Atan2(relative.x, relative.y) * Mathf.Rad2Deg;
+                float angle = Mathf.Atan2(relative.y, relative.x) * Mathf.Rad2Deg;
+                Vector3 newRotation = new Vector3(0,0, angle);
+                pivot.localRotation = Quaternion.Euler(newRotation);
             }
         }
     }

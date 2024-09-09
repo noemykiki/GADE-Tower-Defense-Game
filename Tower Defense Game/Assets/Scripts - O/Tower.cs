@@ -22,11 +22,13 @@ public class Tower : MonoBehaviour
     void Update()
     {
         nearestEnemy();
+
         if (Time.time > nextTimeShoot)
         {
             if (currentTarget != null)
             {
                 shoot();
+                nextTimeShoot = Time.time + fireRate;
             }
 
         }
