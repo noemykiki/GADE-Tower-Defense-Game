@@ -10,8 +10,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float enemyHealth;
   [SerializeField]  private float enemySpeed;
     private int reward;
-    private int damage;
+    private int damageTaken;
     private GameObject targetTile;
+
+    private void Awake()
+    {
+        Enemies.enemies.Add(gameObject);
+    }
 
     private void Start()
     {
@@ -33,6 +38,23 @@ public class Enemy : MonoBehaviour
     private void enemyMovement()
     {
         transform.position = Vector3.MoveTowards(transform.position, targetTile.transform.position, enemySpeed * Time.deltaTime);
+    }
+
+    public void takeDamage(float amount)
+    {
+        enemyHealth += amount;
+
+        if (enemyHealth <= 0)
+        {
+            die();
+        }
+    }
+
+    private void die()
+    {
+
+        Enemies.enemies.Remove(gameObject);
+        Destroy(transform.gameObject);
     }
 
     private void checkPosition()
