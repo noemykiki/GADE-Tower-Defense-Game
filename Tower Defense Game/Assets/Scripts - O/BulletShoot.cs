@@ -6,10 +6,13 @@ using UnityEngine;
 
 public class BulletShoot : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        
+        Destroy(gameObject, 5f);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
     }
 
     // Update is called once per frame
