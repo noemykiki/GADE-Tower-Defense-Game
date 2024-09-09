@@ -8,6 +8,9 @@ public class MapGenerator : MonoBehaviour
 {
     public GameObject MapTile;
     public Sprite PathTileSprite;
+    public Sprite TowerTileSprite;
+    public GameObject TowerTile;
+
     private GameObject currentTile;
     private bool reachedX;
     private bool reachedY;
@@ -19,6 +22,7 @@ public class MapGenerator : MonoBehaviour
 
     public static List<GameObject> mapTiles = new List<GameObject>(); //list of tiles on map
     public static List<GameObject> pathTiles = new List<GameObject>(); //list of path tiles
+    public static List<GameObject> towerTiles = new List<GameObject>();
     public static GameObject[] startTile = new GameObject[3];
     public static GameObject endTile;
     // Start is called before the first frame update
@@ -158,8 +162,47 @@ public class MapGenerator : MonoBehaviour
                     spriteRenderer.sprite = PathTileSprite;  // Set the path sprite
                 }
             }
+           
+        }
+        AddTowerTiles();
+    }
+    private void AddTowerTiles()
+    {
+        int count = 0;
+        while (count < 5)
+        {
+            GameObject pathTile = pathTiles[UnityEngine.Random.Range(0, pathTiles.Count)];
+            Vector2 position = pathTile.transform.position;
+
+            // Check if tile next to pathTile is available
+            Vector2[] potentialPositions = {
+                new Vector2(position.x + 1, position.y),
+                new Vector2(position.x - 1, position.y),
+                new Vector2(position.x, position.y + 1),
+                new Vector2(position.x, position.y - 1)
+            };
+
+            foreach (Vector2 potentialPosition in potentialPositions)
+            {
+                if (!mapTiles.Exists(tile => (Vector2)tile.transform.position == potentialPosition) &&
+                    !towerTiles.Exists(tile => (Vector2)tile.transform.position == potentialPosition))
+                {
+                    GameObject towerTile = Instantiate(TowerTile);
+                    towerTile.transform.position = potentialPosition;
+                    SpriteRenderer spriteRenderer = towerTile.GetComponent<SpriteRenderer>();
+                    if (spriteRenderer != null)
+                    {
+                        spriteRenderer.sprite = TowerTileSprite;  // Set the new tile sprite
+                    }
+                    towerTiles.Add(towerTile);
+                    count++;
+                    if (count >= 5)
+                    {
+                        return;  // Stop adding tiles if we have 5
+                    }
+                }
+            }
         }
     }
-
 }
 
