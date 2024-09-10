@@ -11,10 +11,7 @@ public class GameManager : MonoBehaviour
     private bool isPaused = false;
     public GameObject gameOverScreen;
 
-    private void Start()
-    {
-        gameOverScreen.SetActive(false);
-    }
+    
     private void Update()
     {
         UpdateRewardUI();
