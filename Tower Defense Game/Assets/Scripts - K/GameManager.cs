@@ -9,6 +9,12 @@ public class GameManager : MonoBehaviour
     public TMP_Text rewardText;
     public TMP_Text CastleHealth;
     private bool isPaused = false;
+    public GameObject gameOverScreen;
+
+    private void Start()
+    {
+        gameOverScreen.SetActive(false);
+    }
     private void Update()
     {
         UpdateRewardUI();
@@ -39,6 +45,11 @@ public class GameManager : MonoBehaviour
     private void UpdateCastleHealth()
     {
         CastleHealth.text = Castle.healthLeft.ToString();
+        
+        if (Castle.healthLeft <= 0)
+        {
+            gameOverScreen.SetActive(true);
+        }
     }
 
 
