@@ -24,6 +24,8 @@ public class SceneManagerScript : MonoBehaviour
     public void LoadSampleScene()
     {
         // Load the SampleScene
+        Castle.mainHealth = 500;
+        Enemy.totalReward = 100;
         SceneManager.LoadScene("SampleScene");
         Time.timeScale = 1f;
 

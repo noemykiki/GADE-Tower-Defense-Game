@@ -5,13 +5,15 @@ using UnityEngine;
 public class Castle : MonoBehaviour
 {
     public GameObject castle;
-    [SerializeField] private int mainHealth;
+    [SerializeField] public static int mainHealth;
     public static int healthLeft;
     public int damageTaken;
 
     void Start()
     {
+        mainHealth = 500;
         healthLeft = mainHealth;
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
