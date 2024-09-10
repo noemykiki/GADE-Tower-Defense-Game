@@ -8,7 +8,7 @@ public class BulletShoot : MonoBehaviour
 {
     public void Start()
     {
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 2f);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -18,6 +18,6 @@ public class BulletShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.right * 0.5f;
+        transform.position += transform.right * 0.1f;
     }
 }

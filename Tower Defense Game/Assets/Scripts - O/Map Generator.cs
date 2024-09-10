@@ -81,10 +81,12 @@ public class MapGenerator : MonoBehaviour
     }
 
     private void generateMap() // generates map
-    { if(MapTile != null)
+   
         {
-            
-        
+        mapTiles.Clear();
+        pathTiles.Clear();
+        towerTiles.Clear();
+
         for (int y = 0; y < mapHeight; y++)
         {
             for (int x = 0; x < mapWidth; x++)
@@ -168,7 +170,7 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
-        }
+        
         AddTowerTiles();
     }
 

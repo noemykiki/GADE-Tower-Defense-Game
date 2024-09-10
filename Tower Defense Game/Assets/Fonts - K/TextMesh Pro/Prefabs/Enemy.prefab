@@ -163,12 +163,13 @@ MonoBehaviour:
   enemyHealth: 40
   enemySpeed: 2
   fireRate: 1
-  range: 5
-  damage: 2
+  range: 4
+  damage: 12
   reward: 20
+  healthBarPrefab: {fileID: 2995584287842919764, guid: 84f5443389eae3a478351006e49f882e, type: 3}
   targetTile: {fileID: 0}
   currentTarget: {fileID: 0}
-  bullet: {fileID: 2273030499192774540, guid: 1279fffc44420d342840b3b2efd52b29, type: 3}
+  bullet: {fileID: 6869874070452091606, guid: 27630e275373f4246a0572a96be77ef9, type: 3}
   pivot: {fileID: 8995120068844920276}
   slime: {fileID: 7410769799335430576}
 --- !u!50 &-936198879121521285

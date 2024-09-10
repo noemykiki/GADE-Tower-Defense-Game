@@ -10,8 +10,9 @@ public class GameManager : MonoBehaviour
     public TMP_Text CastleHealth;
     private bool isPaused = false;
     public GameObject gameOverScreen;
+    public EnemySpawn enemySpawn;
 
-    
+
     private void Update()
     {
         UpdateRewardUI();
@@ -48,6 +49,19 @@ public class GameManager : MonoBehaviour
             gameOverScreen.SetActive(true);
         }
     }
+    
 
+    private void Start()
+    {
+        // Initialize or start the enemy spawning when the game starts
+        enemySpawn.spawnEnemies();
+    }
+
+    public void RestartGame()
+    {
+        // Stop existing coroutines and restart enemy spawning
+        enemySpawn.StopSpawning();
+        enemySpawn.spawnEnemies();
+    }
 
 }

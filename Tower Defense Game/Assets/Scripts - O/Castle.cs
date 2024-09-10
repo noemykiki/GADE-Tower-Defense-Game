@@ -7,6 +7,7 @@ public class Castle : MonoBehaviour
     public GameObject castle;
     [SerializeField] private int mainHealth;
     public static int healthLeft;
+    public int damageTaken;
 
     void Start()
     {
@@ -15,7 +16,7 @@ public class Castle : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        healthLeft = mainHealth -= 5;
+        healthLeft = mainHealth -= damageTaken;
         Destroy(collision.gameObject);
     }
 }
