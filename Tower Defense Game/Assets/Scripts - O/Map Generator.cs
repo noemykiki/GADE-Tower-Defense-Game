@@ -81,7 +81,10 @@ public class MapGenerator : MonoBehaviour
     }
 
     private void generateMap() // generates map
-    {
+    { if(MapTile != null)
+        {
+            
+        
         for (int y = 0; y < mapHeight; y++)
         {
             for (int x = 0; x < mapWidth; x++)
@@ -107,7 +110,7 @@ public class MapGenerator : MonoBehaviour
             reachedY = false;
 
 
-            int randTop = UnityEngine.Random.Range(0, mapWidth);  //random number to choose a tile at the top of the map
+            int randTop = UnityEngine.Random.Range(0, mapWidth); //random number to choose a tile at the top of the map
             int ranMove = UnityEngine.Random.Range(1, mapHeight - 1);
 
             startTile[i] = topTiles[randTop];
@@ -161,9 +164,10 @@ public class MapGenerator : MonoBehaviour
                 SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
                 if (spriteRenderer != null)
                 {
-                    spriteRenderer.sprite = PathTileSprite;  // Set the path sprite
+                    spriteRenderer.sprite = PathTileSprite; // Set the path sprite
                 }
             }
+        }
         }
         AddTowerTiles();
     }

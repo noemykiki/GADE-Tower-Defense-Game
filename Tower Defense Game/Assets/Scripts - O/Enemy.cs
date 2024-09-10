@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     private float nextTimeShoot;
     public GameObject targetTile;
     public GameObject currentTarget;
-    public static int totalReward = 50;
+    public static int totalReward = 100;
 
 
 
