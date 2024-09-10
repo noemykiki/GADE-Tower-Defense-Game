@@ -18,6 +18,6 @@ public class BulletShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.right * 0.1f;
+        transform.position += transform.right * 0.05f;
     }
 }
