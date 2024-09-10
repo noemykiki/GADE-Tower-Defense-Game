@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 //This script deals with basic game admin tasks
 public class GameManager : MonoBehaviour
 {
+    public TMP_Text rewardText;
+    public TMP_Text CastleHealth;
     private bool isPaused = false;
-    
+    private void Update()
+    {
+        UpdateRewardUI();
+        UpdateCastleHealth();
+    }
     public void TogglePause() //Handles Pausing the game
     {
         if (isPaused)
@@ -22,7 +29,17 @@ public class GameManager : MonoBehaviour
             isPaused = true;
         }
     }
-
+    private void UpdateRewardUI()
+    {
+       
+            rewardText.text = Enemy.totalReward.ToString();
     
+    }
+
+    private void UpdateCastleHealth()
+    {
+        CastleHealth.text = Castle.healthLeft.ToString();
+    }
+
 
 }

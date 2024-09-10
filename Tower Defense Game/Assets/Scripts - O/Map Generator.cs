@@ -173,7 +173,7 @@ public class MapGenerator : MonoBehaviour
         int count = 0;
         int maxAttempts = 100; // Maximum number of attempts to find a valid position per placement
 
-        while (count < 5)
+        while (count < 7)
         {
             bool spotFound = false;
             int attempts = 0;

@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerHealth: 100
   range: 10
-  damage: 0.1
+  damage: 20
   fireRate: 2
   currentTarget: {fileID: 0}
   bullet: {fileID: 2273030499192774540, guid: 1279fffc44420d342840b3b2efd52b29, type: 3}

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] private float towerHealth;
+    [SerializeField] public float towerHealth;
      [SerializeField] private float range;
     [SerializeField] private float damage;
     [SerializeField] private float fireRate;

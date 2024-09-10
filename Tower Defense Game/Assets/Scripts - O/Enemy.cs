@@ -4,6 +4,8 @@ using System.Collections.Specialized;
 using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
+using TMPro;
+using static System.Net.Mime.MediaTypeNames;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,21 +14,25 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float fireRate;
     [SerializeField] private float range;
     [SerializeField] private float damage;
-    private int reward;
+    [SerializeField] private int reward;
     private int damageTaken;
     private float nextTimeShoot;
     public GameObject targetTile;
     public GameObject currentTarget;
+    public static int totalReward = 50;
+
 
 
     private void Awake()
     {
         Enemies.enemies.Add(gameObject);
     }
-void Start()
+    void Start()
     {
+        
         nextTimeShoot = Time.time;
         inisitaliseEnemy();
+       
     }
 
    void Update()
@@ -44,6 +50,7 @@ void Start()
         }
         checkPosition();
         enemyMovement();
+       
     }
 
     private void inisitaliseEnemy()
@@ -71,7 +78,9 @@ void Start()
     {
 
         Enemies.enemies.Remove(gameObject);
+        totalReward += reward;
         Destroy(transform.gameObject);
+
     }
 
     private void checkPosition()
@@ -89,33 +98,33 @@ void Start()
     }
 
     private void nearestTower()
-    {
-        GameObject nearestTower = null;
-
-        float distance = Mathf.Infinity;
-
-        foreach (GameObject tower in Towers.towers)
         {
-            if (tower != null)
+            GameObject nearestTower = null;
+
+            float distance = Mathf.Infinity;
+
+            foreach (GameObject tower in Towers.towers)
             {
-                float _distance = (transform.position - tower.transform.position).magnitude;
-                if (_distance < distance)
+                if (tower != null)
                 {
-                    distance = _distance;
-                    nearestTower = tower;
+                    float _distance = (transform.position - tower.transform.position).magnitude;
+                    if (_distance < distance)
+                    {
+                        distance = _distance;
+                        nearestTower = tower;
+                    }
                 }
             }
-        }
 
-        if (distance <= range)
-        {
-            currentTarget = nearestTower;
+            if (distance <= range)
+            {
+                currentTarget = nearestTower;
+            }
+            else
+            {
+                currentTarget = null;
+            }
         }
-        else
-        {
-            currentTarget = null;
-        }
-    }
     protected virtual void shoot()
     {
 
@@ -124,4 +133,5 @@ void Start()
         towerScript.takeDamage(-damage);
 
     }
+    
 }

@@ -35,23 +35,23 @@ public class DragTower : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (draggedTower != null)
-        {
+       
             if (draggedTower != null)
             {
                 Vector3 mousePosition = GetWorldPositionFromMouse();
 
-                if (IsValidPlacement(mousePosition, out Vector3 snapPosition))
+                if (IsValidPlacement(mousePosition, out Vector3 snapPosition) && Enemy.totalReward>=50)
                 {
                     draggedTower.transform.position = snapPosition;
-                    Towers.towers.Add(draggedTower); // Add to the list after placing
-                }
+                    Towers.towers.Add(draggedTower);
+                    Enemy.totalReward = Enemy.totalReward - 50;// Add to the list after placing
+            }
                 else
                 {
                     Destroy(draggedTower);
                 }
             }
-        }
+        
     }
 
     private Vector3 GetWorldPositionFromMouse()
