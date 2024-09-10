@@ -2376,6 +2376,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MapTile: {fileID: 1670110911703426840, guid: 4ac8758e75ae92840b1c5367ccc8efef, type: 3}
   PathTileSprite: {fileID: 358269491, guid: b06d592c9f1d8b44586846f9b672e703, type: 3}
+  TowerTile: {fileID: 1234246641563221248, guid: 9b709b568ade16845b3595d94d6fc81a, type: 3}
+  TowerTileSprite: {fileID: 7482667652216324306, guid: 8a63327e8ea046d48885f3fa1872e804, type: 3}
   mapWidth: 20
   mapHeight: 15
 --- !u!4 &1783814476
