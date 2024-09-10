@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Security.Permissions;
 using UnityEngine;
 
@@ -8,7 +9,10 @@ public class MapGenerator : MonoBehaviour
 {
     public GameObject MapTile;
     public Sprite PathTileSprite;
+    public GameObject TowerTile;
     private GameObject currentTile;
+    public GameObject Castle;
+    public Sprite TowerTileSprite;
     private bool reachedX;
     private bool reachedY;
     private int currentIndex;
@@ -19,6 +23,7 @@ public class MapGenerator : MonoBehaviour
 
     public static List<GameObject> mapTiles = new List<GameObject>(); //list of tiles on map
     public static List<GameObject> pathTiles = new List<GameObject>(); //list of path tiles
+    public static List<GameObject> towerTiles = new List<GameObject>(); //list of tower tiles
     public static GameObject[] startTile = new GameObject[3];
     public static GameObject endTile;
     // Start is called before the first frame update
@@ -76,7 +81,12 @@ public class MapGenerator : MonoBehaviour
     }
 
     private void generateMap() // generates map
-    {
+   
+        {
+        mapTiles.Clear();
+        pathTiles.Clear();
+        towerTiles.Clear();
+
         for (int y = 0; y < mapHeight; y++)
         {
             for (int x = 0; x < mapWidth; x++)
@@ -95,13 +105,14 @@ public class MapGenerator : MonoBehaviour
 
 
         endTile = bottomTiles[ranBottom];
+        GameObject Goal = Instantiate(Castle, endTile.transform.position, Quaternion.identity);
         for (int i = 0; i < 3; i++)
         {
             reachedX = false;
             reachedY = false;
 
 
-            int randTop = UnityEngine.Random.Range(0, mapWidth);  //random number to choose a tile at the top of the map
+            int randTop = UnityEngine.Random.Range(0, mapWidth); //random number to choose a tile at the top of the map
             int ranMove = UnityEngine.Random.Range(1, mapHeight - 1);
 
             startTile[i] = topTiles[randTop];
@@ -155,11 +166,97 @@ public class MapGenerator : MonoBehaviour
                 SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
                 if (spriteRenderer != null)
                 {
-                    spriteRenderer.sprite = PathTileSprite;  // Set the path sprite
+                    spriteRenderer.sprite = PathTileSprite; // Set the path sprite
                 }
+            }
+        }
+        
+        AddTowerTiles();
+    }
+
+    private void AddTowerTiles()
+    {
+        int count = 0;
+        int maxAttempts = 100; // Maximum number of attempts to find a valid position per placement
+
+        while (count < 7)
+        {
+            bool spotFound = false;
+            int attempts = 0;
+
+            while (!spotFound && attempts < maxAttempts)
+            {
+                // Select a random path tile
+                GameObject pathTile = pathTiles[UnityEngine.Random.Range(0, pathTiles.Count)];
+                Vector2 position = pathTile.transform.position;
+
+                // Define possible adjacent positions
+                Vector2[] potentialPositions = {
+                new Vector2(position.x + 1, position.y),
+                new Vector2(position.x - 1, position.y),
+                new Vector2(position.x, position.y + 1),
+                new Vector2(position.x, position.y - 1)
+            };
+
+                foreach (Vector2 potentialPosition in potentialPositions)
+                {
+                    // Check if the position is within bounds and not a top tile or path tile
+                    if (IsValidTowerPosition(potentialPosition))
+                    {
+                        GameObject towerTile = Instantiate(TowerTile);
+                        towerTile.transform.position = potentialPosition;
+                        SpriteRenderer spriteRenderer = towerTile.GetComponent<SpriteRenderer>();
+                        if (spriteRenderer != null)
+                        {
+                            spriteRenderer.sprite = TowerTileSprite;  // Set the new tile sprite
+                        }
+                        towerTiles.Add(towerTile);
+                        count++;
+                        spotFound = true;
+                        break; // Exit the adjacent positions loop
+                    }
+                }
+
+                attempts++;
+
+                // Log a warning if max attempts are reached without finding a valid position
+                if (attempts >= maxAttempts)
+                {
+                    UnityEngine.Debug.LogWarning("Max attempts reached. Unable to find a spot for a new tower tile.");
+                }
+            }
+
+            // Log a message if we couldn't place a tower tile after max attempts
+            if (count < 5 && attempts >= maxAttempts)
+            {
+                UnityEngine.Debug.LogWarning("Not enough valid spots found for tower tiles. Still trying...");
             }
         }
     }
 
-}
+    // Helper method to check if a position is a valid tower placement
+    private bool IsValidTowerPosition(Vector2 position)
+    {
+        // Ensure the position is within the map bounds
+        if (position.x < 0 || position.x >= mapWidth || position.y < 0 || position.y >= mapHeight)
+        {
+            return false;
+        }
 
+        // Ensure the position is not on a top tile
+        if (getTopTiles().Exists(tile => (Vector2)tile.transform.position == position))
+        {
+            return false;
+        }
+
+        // Ensure the position is not already occupied by a path tile or another tower tile
+        if (pathTiles.Exists(tile => (Vector2)tile.transform.position == position) ||
+            towerTiles.Exists(tile => (Vector2)tile.transform.position == position))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+}

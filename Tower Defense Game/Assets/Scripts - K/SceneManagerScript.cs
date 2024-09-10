@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class SceneManagerScript : MonoBehaviour
 {
-    // This function will be called when the Quit button is pressed
+    public GameObject enemySpawnObject; // Reference to the GameObject with EnemySpawn script
+
+    private Coroutine enemySpawnCoroutine;
     public void QuitGame()
     {
         #if UNITY_EDITOR
@@ -17,27 +19,39 @@ public class SceneManagerScript : MonoBehaviour
             Application.Quit();
         #endif
     }
-    
-    // This function will be called when the "Next" button is pressed
-    public void LoadNextScene()
-    {
-        // Load the next scene in the build (based on the current scene index)
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex = currentSceneIndex + 1;
 
-        // Check if the next scene index is within the build scenes
-        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
-        {
-            SceneManager.LoadScene(nextSceneIndex);
-        }
-        else
-        {
-            Debug.Log("No more scenes to load!");
-        }
+
+    public void LoadSampleScene()
+    {
+        // Load the SampleScene
+        Castle.mainHealth = 500;
+        Enemy.totalReward = 100;
+        SceneManager.LoadScene("SampleScene");
+        Time.timeScale = 1f;
+
+
     }
-    
+
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+      
     }
+    public void RestartGame()
+    {
+         // Ensure that the coroutine restarts
+        if (enemySpawnObject != null)
+        {
+            EnemySpawn enemySpawn = enemySpawnObject.GetComponent<EnemySpawn>();
+            if (enemySpawn != null)
+            {
+                // Stop any existing coroutine
+                
+
+                // Start the coroutine again
+                enemySpawnCoroutine = StartCoroutine(enemySpawn.ISpawnEnemies());
+            }
+        }
+    }
+
 }

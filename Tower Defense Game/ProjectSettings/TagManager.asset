@@ -3,12 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - TowerTile
+  - RewardText
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - bullets
   - Water
   - UI
   - 
@@ -40,4 +43,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bullet
+    uniqueID: 3040064343
+    locked: 0
+  - name: Tower
+    uniqueID: 2718476001
+    locked: 0
+  - name: health
+    uniqueID: 783234703
     locked: 0
