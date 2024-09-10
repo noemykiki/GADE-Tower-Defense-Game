@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ff316593e8b860044a3716d9fb1eb2f1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - targetTile: {instanceID: 0}
+  - currentTarget: {instanceID: 0}
+  - bullet: {instanceID: 0}
+  - pivot: {instanceID: 0}
+  - slime: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

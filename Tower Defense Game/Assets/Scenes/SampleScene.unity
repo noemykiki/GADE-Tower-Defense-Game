@@ -1104,7 +1104,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.5
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1129,7 +1129,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7, y: 8.03, z: -1.3}
+  m_LocalPosition: {x: 6.9, y: 7.7, z: -1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1191,6 +1191,7 @@ GameObject:
   - component: {fileID: 928321827}
   - component: {fileID: 928321826}
   - component: {fileID: 928321825}
+  - component: {fileID: 928321828}
   m_Layer: 5
   m_Name: Defender_1
   m_TagString: Untagged
@@ -1299,6 +1300,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928321823}
   m_CullTransparentMesh: 1
+--- !u!114 &928321828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928321823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b5a9a63a3b78d40bd87f0948c1cbbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerPrefab: {fileID: 6566388170333578871, guid: a70991f127e13134094c559c7a7c9679, type: 3}
 --- !u!1 &951011368
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,7 +1461,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
@@ -1458,7 +1472,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &1120987538
 RectTransform:
@@ -2377,6 +2391,7 @@ MonoBehaviour:
   MapTile: {fileID: 1670110911703426840, guid: 4ac8758e75ae92840b1c5367ccc8efef, type: 3}
   PathTileSprite: {fileID: 358269491, guid: b06d592c9f1d8b44586846f9b672e703, type: 3}
   TowerTile: {fileID: 1234246641563221248, guid: 9b709b568ade16845b3595d94d6fc81a, type: 3}
+  Castle: {fileID: 5019638471587982641, guid: 4d8c7b5d8884d724e9b0c1aa88ceb01e, type: 3}
   TowerTileSprite: {fileID: 7482667652216324306, guid: 8a63327e8ea046d48885f3fa1872e804, type: 3}
   mapWidth: 20
   mapHeight: 15
@@ -2771,11 +2786,11 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1120987538}
   - {fileID: 1826150207}
   - {fileID: 519420032}
   - {fileID: 202960509}
   - {fileID: 1783814476}
   - {fileID: 663748851}
-  - {fileID: 1120987538}
   - {fileID: 1465700076}
   - {fileID: 1434928133}

@@ -11,6 +11,7 @@ public class MapGenerator : MonoBehaviour
     public Sprite PathTileSprite;
     public GameObject TowerTile;
     private GameObject currentTile;
+    public GameObject Castle;
     public Sprite TowerTileSprite;
     private bool reachedX;
     private bool reachedY;
@@ -99,6 +100,7 @@ public class MapGenerator : MonoBehaviour
 
 
         endTile = bottomTiles[ranBottom];
+        GameObject Goal = Instantiate(Castle, endTile.transform.position, Quaternion.identity);
         for (int i = 0; i < 3; i++)
         {
             reachedX = false;

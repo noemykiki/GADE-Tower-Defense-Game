@@ -8,23 +8,40 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float enemyHealth;
-  [SerializeField]  private float enemySpeed;
+    [SerializeField]  private float enemySpeed;
+    [SerializeField] private float fireRate;
+    [SerializeField] private float range;
+    [SerializeField] private float damage;
     private int reward;
     private int damageTaken;
+    private float nextTimeShoot;
     public GameObject targetTile;
+    public GameObject currentTarget;
+
 
     private void Awake()
     {
         Enemies.enemies.Add(gameObject);
     }
-
-    private void Start()
+void Start()
     {
+        nextTimeShoot = Time.time;
         inisitaliseEnemy();
     }
 
-    private void Update()
+   void Update()
     {
+        nearestTower();
+
+        if (Time.time > nextTimeShoot)
+        {
+            if (currentTarget != null)
+            {
+                shoot();
+                nextTimeShoot = Time.time + fireRate;
+            }
+
+        }
         checkPosition();
         enemyMovement();
     }
@@ -69,5 +86,42 @@ public class Enemy : MonoBehaviour
                 targetTile = MapGenerator.pathTiles[currentIndex + 1];
             }
         }
+    }
+
+    private void nearestTower()
+    {
+        GameObject nearestTower = null;
+
+        float distance = Mathf.Infinity;
+
+        foreach (GameObject tower in Towers.towers)
+        {
+            if (tower != null)
+            {
+                float _distance = (transform.position - tower.transform.position).magnitude;
+                if (_distance < distance)
+                {
+                    distance = _distance;
+                    nearestTower = tower;
+                }
+            }
+        }
+
+        if (distance <= range)
+        {
+            currentTarget = nearestTower;
+        }
+        else
+        {
+            currentTarget = null;
+        }
+    }
+    protected virtual void shoot()
+    {
+
+        Tower towerScript = currentTarget.GetComponent<Tower>();
+
+        towerScript.takeDamage(-damage);
+
     }
 }

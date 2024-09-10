@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-
-    [SerializeField] private float range;
+    [SerializeField] private float towerHealth;
+     [SerializeField] private float range;
     [SerializeField] private float damage;
     [SerializeField] private float fireRate;
+    private int damageTaken;
     private float nextTimeShoot;
 
     public  GameObject currentTarget;
@@ -70,5 +71,21 @@ public class Tower : MonoBehaviour
 
           enemyScript.takeDamage(-damage);
         
+    }
+    public void takeDamage(float amount)
+    {
+        towerHealth += amount;
+
+        if (towerHealth <= 0)
+        {
+            die();
+        }
+    }
+
+    private void die()
+    {
+
+        Towers.towers.Remove(gameObject);
+        Destroy(transform.gameObject);
     }
 }
