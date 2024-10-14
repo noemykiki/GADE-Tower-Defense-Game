@@ -54,14 +54,14 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // Initialize or start the enemy spawning when the game starts
-        enemySpawn.spawnEnemies();
+        enemySpawn.StartSpawning();
     }
 
     public void RestartGame()
     {
         // Stop existing coroutines and restart enemy spawning
         enemySpawn.StopSpawning();
-        enemySpawn.spawnEnemies();
+        enemySpawn.StartSpawning();
     }
 
 }

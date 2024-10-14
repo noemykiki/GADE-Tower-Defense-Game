@@ -470,12 +470,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12019f15fecf19e4cb4702bfdf905a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicEnemy: {fileID: 1807892130806485758, guid: ccda6c49e7f65e144b1b100118b673cf, type: 3}
-  healthBarPrefab: {fileID: 0}
-  interval: 2
-  timeBeforeStart: 1.5
-  roundStart: 0
-  roundGoing: 0
+  regularEnemyPrefab: {fileID: 1807892130806485758, guid: ccda6c49e7f65e144b1b100118b673cf, type: 3}
+  fastEnemyPrefab: {fileID: 3377487222273604410, guid: 58eed7272ed4d884a8f77063ec7181f3, type: 3}
+  tankEnemyPrefab: {fileID: 8579824788770285090, guid: c6f79cb31db48d747b5a0e26f4699359, type: 3}
+  timeBeforeStart: 2
+  timeBetweenWaves: 3
+  totalNumberOfWaves: 6
+  baseEnemyCount: 20
+  enemyCountIncrement: 2
 --- !u!4 &1434928133
 Transform:
   m_ObjectHideFlags: 0
@@ -520,7 +522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b147559178dcf4795f7401b13b64f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpawnObject: {fileID: 0}
+  enemySpawnObject: {fileID: 1434928131}
 --- !u!4 &1465700076
 Transform:
   m_ObjectHideFlags: 0

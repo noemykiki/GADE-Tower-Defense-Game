@@ -46,11 +46,10 @@ public class SceneManagerScript : MonoBehaviour
             if (enemySpawn != null)
             {
                 // Stop any existing coroutine
-                
+
 
                 // Start the coroutine again
-                enemySpawnCoroutine = StartCoroutine(enemySpawn.ISpawnEnemies());
-            }
+                enemySpawnCoroutine = StartCoroutine(enemySpawn.SpawnEnemies());            }
         }
     }
 
