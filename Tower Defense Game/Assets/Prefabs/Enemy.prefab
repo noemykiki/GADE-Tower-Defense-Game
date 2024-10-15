@@ -162,9 +162,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 40
   enemySpeed: 2
-  fireRate: 1
-  range: 4
-  damage: 12
+  fireRate: 2
+  range: 3.5
+  damage: 10
   reward: 20
   healthBarPrefab: {fileID: 2995584287842919764, guid: 84f5443389eae3a478351006e49f882e, type: 3}
   targetTile: {fileID: 0}

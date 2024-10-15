@@ -135,9 +135,9 @@ MonoBehaviour:
   enemyHealth: 30
   enemySpeed: 5
   fireRate: 0.5
-  range: 5
+  range: 4
   damage: 6
-  reward: 10
+  reward: 35
   healthBarPrefab: {fileID: 2995584287842919764, guid: 84f5443389eae3a478351006e49f882e, type: 3}
   targetTile: {fileID: 0}
   currentTarget: {fileID: 0}

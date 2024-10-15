@@ -6,6 +6,7 @@ public class DragTower : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 {
     public GameObject towerPrefab; // The tower prefab to be dragged
     private GameObject draggedTower; // The instance of the tower being dragged
+    public int cost;
     private Camera mainCamera; // Reference to the main camera
     private Vector3 snapPosition; // The position where the tower should snap
 
@@ -40,11 +41,11 @@ public class DragTower : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             {
                 Vector3 mousePosition = GetWorldPositionFromMouse();
 
-                if (IsValidPlacement(mousePosition, out Vector3 snapPosition) && Enemy.totalReward>=50)
+                if (IsValidPlacement(mousePosition, out Vector3 snapPosition) && Enemy.totalReward>=cost)
                 {
                     draggedTower.transform.position = snapPosition;
                     Towers.towers.Add(draggedTower);
-                    Enemy.totalReward = Enemy.totalReward - 50;// Add to the list after placing
+                    Enemy.totalReward = Enemy.totalReward - cost;// Add to the list after placing
             }
                 else
                 {
