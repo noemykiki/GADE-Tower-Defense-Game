@@ -10,6 +10,8 @@ public class Tower : MonoBehaviour
     [SerializeField] private float range;
     [SerializeField] private float damage;
     [SerializeField] private float fireRate;
+    private DamageEffectController damageFlash;
+    public GameObject destructionEffect;
 
     public HealthBar healthBarPrefab; // Reference to the HealthBar prefab
     private HealthBar healthBar;
@@ -21,6 +23,7 @@ public class Tower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        damageFlash = GetComponent<DamageEffectController>();
         maxHealth = towerHealth;
         if (healthBarPrefab != null)
         {
@@ -103,16 +106,23 @@ public class Tower : MonoBehaviour
     public void takeDamage(float amount)
     {
         towerHealth += amount;
-
+        if (damageFlash != null)
+        {
+            damageFlash.TriggerDamageEffects();
+        }
         if (towerHealth <= 0)
         {
+
             die();
         }
     }
 
     private void die()
     {
-
+        if (destructionEffect != null)
+        {
+            Instantiate(destructionEffect, transform.position, Quaternion.identity);
+        }
         Towers.towers.Remove(gameObject);
         Destroy(transform.gameObject);
     }

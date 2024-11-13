@@ -17,6 +17,9 @@ public class MapGenerator : MonoBehaviour
     private bool reachedY;
     private int currentIndex;
     private int nextIndex;
+    public List<GameObject> castlePrefabs; // List of castle prefabs for each upgrade level
+    public List<int> upgradeCosts; // List of upgrade costs for each level
+    private int currentUpgradeLevel = 0; // Track current upgrade level
 
     [SerializeField] private int mapWidth; //map width
     [SerializeField] private int mapHeight; //map height
@@ -26,6 +29,8 @@ public class MapGenerator : MonoBehaviour
     public static List<GameObject> towerTiles = new List<GameObject>(); //list of tower tiles
     public static GameObject[] startTile = new GameObject[3];
     public static GameObject endTile;
+
+    private GameObject currentCastle; // Reference to the instantiated castle
     // Start is called before the first frame update
     void Start()
     {
@@ -99,13 +104,13 @@ public class MapGenerator : MonoBehaviour
 
         List<GameObject> topTiles = getTopTiles();     //list of the tiles at the top of the map
         List<GameObject> bottomTiles = getBottomTiles(); // list of tiles at the bottom of the map
-
+       
 
         int ranBottom = UnityEngine.Random.Range(0, mapWidth); //random number to choose a tile at the bottom of the map
 
 
         endTile = bottomTiles[ranBottom];
-        GameObject Goal = Instantiate(Castle, endTile.transform.position, Quaternion.identity);
+        currentCastle = Instantiate(Castle, endTile.transform.position, Quaternion.identity); // Store reference to the castle
         for (int i = 0; i < 3; i++)
         {
             reachedX = false;
@@ -169,6 +174,7 @@ public class MapGenerator : MonoBehaviour
                     spriteRenderer.sprite = PathTileSprite; // Set the path sprite
                 }
             }
+           
         }
         
         AddTowerTiles();
@@ -258,5 +264,36 @@ public class MapGenerator : MonoBehaviour
 
         return true;
     }
+    public void UpgradeCastle()
+    {
+        if (currentCastle != null && castlePrefabs != null && castlePrefabs.Count > currentUpgradeLevel + 1)
+        {
+            int nextUpgradeLevel = currentUpgradeLevel + 1;
+            int upgradeCost = upgradeCosts[nextUpgradeLevel];
+
+            if (Enemy.totalReward >= upgradeCost)
+            {
+                Enemy.totalReward -= upgradeCost;
+
+                Vector3 position = currentCastle.transform.position;
+                Quaternion rotation = currentCastle.transform.rotation;
+
+                Destroy(currentCastle);
+
+                currentCastle = Instantiate(castlePrefabs[nextUpgradeLevel], position, rotation);
+                currentUpgradeLevel = nextUpgradeLevel;
+            }
+            else
+            {
+                UnityEngine.Debug.Log("Not enough resources to upgrade the castle.");
+            }
+        }
+        else
+        {
+            UnityEngine.Debug.Log("Castle is already at maximum upgrade level or prefabs are not properly assigned.");
+        }
+    }
+
+
 
 }

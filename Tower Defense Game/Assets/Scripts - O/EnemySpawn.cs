@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+
 public class EnemySpawn : MonoBehaviour
 {
     // Enemy prefabs
@@ -11,7 +14,7 @@ public class EnemySpawn : MonoBehaviour
     public GameObject tankEnemyPrefab;
 
     // Wave settings
-    public float timeBeforeStart ;
+    public float timeBeforeStart;
     public float timeBetweenWaves = 10f;
     public int totalNumberOfWaves = 10;
     public int baseEnemyCount = 5;
@@ -23,6 +26,11 @@ public class EnemySpawn : MonoBehaviour
     private bool isSpawning = false;
     public Castle castle;
 
+    public static bool isBonusFrenzyActive = false;
+    public Volume globalVolume; // Assign your global volume in the Inspector
+    private ChromaticAberration chromaticAberration;
+    private ColorAdjustments colorAdjustments;
+
     // Reference to coroutine
     private Coroutine spawnCoroutine;
     private Coroutine startSpawningCoroutine;
@@ -32,6 +40,31 @@ public class EnemySpawn : MonoBehaviour
     void Start()
     {
         startSpawningCoroutine = StartCoroutine(StartSpawning());
+        if (globalVolume != null)
+        {
+            VolumeProfile profile = globalVolume.profile;
+            if (!profile.TryGet(out chromaticAberration))
+            {
+                UnityEngine.Debug.LogError("Chromatic Aberration not found in the Volume Profile");
+            }
+            else
+            {
+                chromaticAberration.active = false; // Ensure it's disabled at the start
+            }
+            if (!profile.TryGet(out colorAdjustments))
+            {
+                UnityEngine.Debug.LogError("Color Adjustments not found in the Volume Profile");
+            }
+            else
+            {
+                colorAdjustments.active = false; // Ensure it's disabled at the start
+                colorAdjustments.hueShift.Override(0f); // Initialize hue shift
+            }
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("Global Volume is not assigned in the EnemySpawn script.");
+        }
     }
 
     private float GetPlayerPerformance()
@@ -47,7 +80,7 @@ public class EnemySpawn : MonoBehaviour
         }
     }
 
-        public IEnumerator StartSpawning()
+    public IEnumerator StartSpawning()
     {
         enemiesToSpawn = GenerateEnemiesForWave(currentWaveNumber);
         // Wait before starting the first wave
@@ -64,6 +97,22 @@ public class EnemySpawn : MonoBehaviour
             // Start spawning enemies
             spawnCoroutine = StartCoroutine(SpawnEnemies());
 
+            float spawnInterval = 1f; // From SpawnEnemies() coroutine
+            int enemyCount = enemiesToSpawn.Count;
+            float totalSpawnDuration = enemyCount * spawnInterval;
+
+            // Determine a random time during the spawning phase to start the bonus frenzy
+            float bonusFrenzyDuration = 12f;
+
+            // Ensure that the bonus frenzy can fit within the spawning duration
+            float bonusFrenzyStartTime = 0f;
+            if (totalSpawnDuration > bonusFrenzyDuration)
+            {
+                bonusFrenzyStartTime = UnityEngine.Random.Range(0f, totalSpawnDuration - bonusFrenzyDuration);
+            }
+
+            // Start the bonus frenzy coroutine
+            StartCoroutine(BonusFrenzyCoroutine(bonusFrenzyStartTime, bonusFrenzyDuration));
             // Wait until all enemies are spawned
             yield return new WaitUntil(() => enemiesToSpawn.Count == 0);
 
@@ -240,9 +289,77 @@ public class EnemySpawn : MonoBehaviour
     {
         Enemy.CleanUpDestroyedEnemies();
     }
+    private IEnumerator BonusFrenzyCoroutine(float startDelay, float duration)
+    {
+        // Wait for the start delay
+        yield return new WaitForSeconds(startDelay);
+
+        // Activate bonus frenzy
+        isBonusFrenzyActive = true;
+        UnityEngine.Debug.Log("Bonus Frenzy Activated!");
+
+        // Activate chromatic aberration effect
+        if (chromaticAberration != null)
+        {
+            chromaticAberration.active = true;
+        }
+
+        // Activate color adjustments effect
+        if (colorAdjustments != null)
+        {
+            colorAdjustments.active = true;
+        }
+
+        // Variables for pulsing effects
+        float elapsedTime = 0f;
+        float pulseSpeedC = 0.2f;
+        float pulseSpeedA = 2f; // Adjust this value for faster or slower pulsing
+        float maxCAIntensity = 0.6f;  // Maximum chromatic aberration intensity
+        float minCAIntensity = 0.2f;  // Minimum chromatic aberration intensity
+
+        // Pulse the effects over the duration
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+
+            // Chromatic Aberration Intensity (Pulsing)
+            float caIntensity = Mathf.Lerp(minCAIntensity, maxCAIntensity,
+                (Mathf.Sin(elapsedTime * pulseSpeedA * Mathf.PI * 2f) + 1f) / 2f);
+            chromaticAberration.intensity.Override(caIntensity);
+
+            // Hue Shift (Pulsing between -180 and 180)
+            float hueShift = Mathf.Lerp(-180f, 180f,
+                (Mathf.Sin(elapsedTime * pulseSpeedC * Mathf.PI * 2f) + 1f) / 2f);
+            colorAdjustments.hueShift.Override(hueShift);
+
+            // Increment elapsed time
+            elapsedTime += Time.deltaTime;
+
+            yield return null; // Wait for the next frame
+        }
+
+        // Deactivate bonus frenzy
+        isBonusFrenzyActive = false;
+        UnityEngine.Debug.Log("Bonus Frenzy Deactivated!");
+
+        // Deactivate chromatic aberration effect
+        if (chromaticAberration != null)
+        {
+            chromaticAberration.active = false;
+            chromaticAberration.intensity.Override(0f); // Reset intensity
+        }
+
+        // Deactivate color adjustments effect
+        if (colorAdjustments != null)
+        {
+            colorAdjustments.active = false;
+            colorAdjustments.hueShift.Override(0f); // Reset hue shift
+        }
+    }
+
 }
-// EnemyType enum should be in a separate script file EnemyType.cs
-public enum EnemyType
+    // EnemyType enum should be in a separate script file EnemyType.cs
+    public enum EnemyType
 {
     Regular,
     Fast,

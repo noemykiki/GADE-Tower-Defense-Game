@@ -12,14 +12,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float fireRate;
     [SerializeField] private float range;
     [SerializeField] private float damage;
-    [SerializeField] private int reward;
+    [SerializeField] private double reward;
+    private DamageEffectController damageFlash;
+
 
     public HealthBar healthBarPrefab; // Reference to the HealthBar prefab
     private HealthBar healthBar;
     private float nextTimeShoot;
     public GameObject targetTile;
     public GameObject currentTarget;
-    public static int totalReward = 100;
+    public static double totalReward = 100;
     private GameObject healthBarObject;
     private void Awake()
     {
@@ -28,6 +30,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        damageFlash = GetComponent<DamageEffectController>();
         maxHealth = enemyHealth;
         if (healthBarPrefab != null)
         {
@@ -86,6 +89,10 @@ public class Enemy : MonoBehaviour
     public void takeDamage(float amount)
     {
         enemyHealth -= -amount;
+        if (damageFlash != null)
+        {
+            damageFlash.TriggerDamageEffects();
+        }
         if (healthBar != null)
         {
             healthBar.SetHealth(enemyHealth);
@@ -99,6 +106,17 @@ public class Enemy : MonoBehaviour
     private void die()
     {
         Enemies.enemies.Remove(gameObject);
+        if (EnemySpawn.isBonusFrenzyActive)
+        {
+            reward *= 1.5;
+            totalReward += reward;
+        }
+        else
+        {
+            totalReward += reward;
+        }
+        
+
         totalReward += reward;
         if (healthBarObject != null)
         {

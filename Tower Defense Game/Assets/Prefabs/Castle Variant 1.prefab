@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4457200748020664472
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 79392458274513336, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -854310088, guid: 18c40f12bdceee24f87a8a768c65cf7e, type: 3}
+    - target: {fileID: 1392589229099144464, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392589229099144464, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392589229099144464, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392589229099144464, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392589229099144464, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392589229099144464, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392589229099144464, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392589229099144464, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392589229099144464, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392589229099144464, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227028636296182499, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.5714285
+      objectReference: {fileID: 0}
+    - target: {fileID: 5973190437523173061, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}
+      propertyPath: damage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5973190437523173061, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}
+      propertyPath: fireRate
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8188573078798584374, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}
+      propertyPath: m_Name
+      value: Castle Variant 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}

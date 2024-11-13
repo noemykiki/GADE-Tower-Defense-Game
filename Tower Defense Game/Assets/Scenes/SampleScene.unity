@@ -140,8 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b5a9a63a3b78d40bd87f0948c1cbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 8917701221676108742, guid: 56e76f7edcd0d7d41839cb1facb795d4, type: 3}
-  cost: 100
+  towerPrefabs:
+  - {fileID: 8917701221676108742, guid: 56e76f7edcd0d7d41839cb1facb795d4, type: 3}
+  upgradeCosts: c8000000
+  placementCost: 100
 --- !u!1 &122179468
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,8 +683,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b5a9a63a3b78d40bd87f0948c1cbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 1775481363087394040, guid: 257112e32aec1b144b23ee4943538752, type: 3}
-  cost: 200
+  towerPrefabs:
+  - {fileID: 1775481363087394040, guid: 257112e32aec1b144b23ee4943538752, type: 3}
+  upgradeCosts: 2c010000
+  placementCost: 200
+--- !u!1 &279273872 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2723560988659586432, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+  m_PrefabInstance: {fileID: 5358763841021399627}
+  m_PrefabAsset: {fileID: 0}
+--- !u!210 &279273876
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279273872}
+  m_Enabled: 1
+  m_SortingLayerID: -1220496121
+  m_SortingLayer: 4
+  m_SortingOrder: 0
+  m_SortAtRoot: 1
 --- !u!1 &409467452
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,8 +736,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b5a9a63a3b78d40bd87f0948c1cbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 8917701221676108742, guid: 56e76f7edcd0d7d41839cb1facb795d4, type: 3}
-  cost: 100
+  towerPrefabs:
+  - {fileID: 7154701260031393497, guid: 7f1761e8643cdf94a8feb5d35c7fc8f7, type: 3}
+  upgradeCosts: 2c0100002c010000
+  placementCost: 100
 --- !u!114 &409467454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -925,19 +948,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1175046341}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 899633421}
+      - m_Target: {fileID: 1792963152}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -949,10 +960,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1792963152}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1470079076}
+        m_TargetAssemblyTypeName: DragTower, Assembly-CSharp
+        m_MethodName: UpgradeTower
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1031,8 +1042,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b5a9a63a3b78d40bd87f0948c1cbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 1775481363087394040, guid: 257112e32aec1b144b23ee4943538752, type: 3}
-  cost: 200
+  towerPrefabs:
+  - {fileID: 1465046849862668132, guid: 347f96f59c69fc044816063369220057, type: 3}
+  upgradeCosts: 
+  placementCost: 200
 --- !u!114 &485960901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1146,6 +1159,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1196,7 +1210,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1221,7 +1235,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.9, y: 7.1, z: -1.3}
+  m_LocalPosition: {x: 9.22, y: 7.1, z: -1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1247,6 +1261,99 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: 0
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
+--- !u!1 &588237224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 588237226}
+  - component: {fileID: 588237225}
+  m_Layer: 0
+  m_Name: Frenzy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &588237225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588237224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: c7b5f17539aa5fd4abb5798ed7bf62a8, type: 2}
+--- !u!4 &588237226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588237224}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 962.1081, y: 541.9074, z: -0.12182075}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &601232076 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7852573451215620057, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
@@ -1284,6 +1391,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1420049542}
+  - {fileID: 2125358907}
   m_Father: {fileID: 1825958898}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1345,9 +1453,21 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1237539402}
+      - m_Target: {fileID: 1783814475}
+        m_TargetAssemblyTypeName: MapGenerator, Assembly-CSharp
+        m_MethodName: UpgradeCastle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1420049541}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1357,9 +1477,9 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1007132962}
+      - m_Target: {fileID: 2125358906}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1686,19 +1806,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 899633421}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 961576131}
+      - m_Target: {fileID: 1788812514}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1710,10 +1818,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1788812514}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1792963153}
+        m_TargetAssemblyTypeName: DragTower, Assembly-CSharp
+        m_MethodName: UpgradeTower
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1867,19 +1975,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1852560675}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1414205725}
+      - m_Target: {fileID: 962382632}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1891,10 +1987,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 962382632}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 243663624}
+        m_TargetAssemblyTypeName: DragTower, Assembly-CSharp
+        m_MethodName: UpgradeTower
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2053,7 +2149,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 958.5, y: 541}
+  m_AnchoredPosition: {x: 961, y: 535}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &899633421
@@ -2356,8 +2452,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b5a9a63a3b78d40bd87f0948c1cbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 8917701221676108742, guid: 56e76f7edcd0d7d41839cb1facb795d4, type: 3}
-  cost: 100
+  towerPrefabs:
+  - {fileID: 2248803907260324089, guid: d8570aa21cc4eca46ab8db1e302008e7, type: 3}
+  upgradeCosts: 
+  placementCost: 200
 --- !u!114 &941683425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2688,19 +2786,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1423798087}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 151884864}
+      - m_Target: {fileID: 941683423}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -2712,10 +2798,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 941683423}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 409467453}
+        m_TargetAssemblyTypeName: DragTower, Assembly-CSharp
+        m_MethodName: UpgradeTower
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2794,8 +2880,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b5a9a63a3b78d40bd87f0948c1cbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 1775481363087394040, guid: 257112e32aec1b144b23ee4943538752, type: 3}
-  cost: 200
+  towerPrefabs:
+  - {fileID: 3647688745702906429, guid: 5ec39b81419e7f04485c5308fa65dc77, type: 3}
+  upgradeCosts: 9001000090010000
+  placementCost: 200
 --- !u!114 &962382634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3138,19 +3226,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2141605550}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1423798087}
+      - m_Target: {fileID: 409467452}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -3162,10 +3238,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 409467452}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 62604981}
+        m_TargetAssemblyTypeName: DragTower, Assembly-CSharp
+        m_MethodName: UpgradeTower
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3362,11 +3438,6 @@ RectTransform:
   m_AnchoredPosition: {x: -8.3, y: 0}
   m_SizeDelta: {x: 7, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1175046341 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4166011830296917292, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
-  m_PrefabInstance: {fileID: 5358763841021399627}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1222025120
 GameObject:
   m_ObjectHideFlags: 0
@@ -3435,8 +3506,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2125358907}
+  m_Children: []
   m_Father: {fileID: 1825958898}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3684,19 +3754,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1414205725}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 925583718}
+      - m_Target: {fileID: 485960899}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -3708,10 +3766,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 485960899}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 962382633}
+        m_TargetAssemblyTypeName: DragTower, Assembly-CSharp
+        m_MethodName: UpgradeTower
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3926,7 +3984,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 18.7, y: 0}
+  m_AnchoredPosition: {x: 18.699997, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1420049543
@@ -4166,6 +4224,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1470079076 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8233452765151400197, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+  m_PrefabInstance: {fileID: 5358763841021399627}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b5a9a63a3b78d40bd87f0948c1cbbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1613382958
 GameObject:
   m_ObjectHideFlags: 0
@@ -4450,6 +4519,11 @@ MonoBehaviour:
   TowerTile: {fileID: 1234246641563221248, guid: 9b709b568ade16845b3595d94d6fc81a, type: 3}
   Castle: {fileID: 5019638471587982641, guid: 4d8c7b5d8884d724e9b0c1aa88ceb01e, type: 3}
   TowerTileSprite: {fileID: 7482667652216324306, guid: 8a63327e8ea046d48885f3fa1872e804, type: 3}
+  castlePrefabs:
+  - {fileID: 5019638471587982641, guid: 4d8c7b5d8884d724e9b0c1aa88ceb01e, type: 3}
+  - {fileID: 8188573078798584374, guid: 63c5e9923b7a3e64982dc6d02b85e0e7, type: 3}
+  - {fileID: 5510312076569821870, guid: 3afbb368e7fd4104aab02e4ca71b47d3, type: 3}
+  upgradeCosts: 00000000c80000002c010000
   mapWidth: 20
   mapHeight: 15
 --- !u!4 &1783814476
@@ -4499,8 +4573,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b5a9a63a3b78d40bd87f0948c1cbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 6566388170333578871, guid: a70991f127e13134094c559c7a7c9679, type: 3}
-  cost: 50
+  towerPrefabs:
+  - {fileID: 2322651429959788195, guid: 15e10106c720349458eed8c1ed2cd3ef, type: 3}
+  upgradeCosts: 
+  placementCost: 50
 --- !u!114 &1788812516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4634,8 +4710,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b5a9a63a3b78d40bd87f0948c1cbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 6566388170333578871, guid: a70991f127e13134094c559c7a7c9679, type: 3}
-  cost: 50
+  towerPrefabs:
+  - {fileID: 4219580004064012211, guid: 2e168c35f4042ad4cbf55f963567a940, type: 3}
+  upgradeCosts: c8000000c8000000c8000000
+  placementCost: 50
 --- !u!114 &1792963154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5134,7 +5212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2125358907
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5147,11 +5225,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1237539403}
+  m_Father: {fileID: 623629351}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 18.7, y: 0}
+  m_AnchoredPosition: {x: 18.699997, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2125358908
@@ -5349,6 +5427,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2395523477096951792, guid: 340a98c5ba8463e4d8e138bd2dc15448, type: 3}
+      propertyPath: globalVolume
+      value: 
+      objectReference: {fileID: 588237225}
     - target: {fileID: 3112816917176985638, guid: 340a98c5ba8463e4d8e138bd2dc15448, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
@@ -5434,6 +5516,10 @@ PrefabInstance:
       propertyPath: m_SpriteState.m_HighlightedSprite
       value: 
       objectReference: {fileID: -1225463187, guid: 6ef276665afa9d345b47f53b196f105e, type: 3}
+    - target: {fileID: 2723560988659586432, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2869810251178112645, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
       propertyPath: m_Transition
       value: 2
@@ -5462,6 +5548,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 4054833460670576784, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054833460670576784, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4472882013335535449, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -5546,6 +5640,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5842748068528821598, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6154812708443677150, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -5574,9 +5672,73 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health Icon 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8163850540642248447, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163850540642248447, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163850540642248447, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1470079076}
+    - target: {fileID: 8163850540642248447, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163850540642248447, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpgradeTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163850540642248447, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DragTower, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163850540642248447, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8233452765151400197, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
       propertyPath: cost
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233452765151400197, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: placementCost
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233452765151400197, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: towerPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233452765151400197, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: upgradeCosts.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233452765151400197, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: towerPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 6566388170333578871, guid: a70991f127e13134094c559c7a7c9679, type: 3}
+    - target: {fileID: 8233452765151400197, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: towerPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 4219580004064012211, guid: 2e168c35f4042ad4cbf55f963567a940, type: 3}
+    - target: {fileID: 8233452765151400197, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: towerPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 2322651429959788195, guid: 15e10106c720349458eed8c1ed2cd3ef, type: 3}
+    - target: {fileID: 8233452765151400197, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: upgradeCosts.Array.data[0]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233452765151400197, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: upgradeCosts.Array.data[1]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233452765151400197, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      propertyPath: upgradeCosts.Array.data[2]
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8301885510460551476, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5626,6 +5788,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 961576134}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2723560988659586432, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 279273876}
     - targetCorrespondingSourceObject: {fileID: 1749147414079182044, guid: d2140eb0f972eac45acdd940a452b5b1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 243663624}
@@ -5646,3 +5811,4 @@ SceneRoots:
   - {fileID: 1465700076}
   - {fileID: 5307627809325042165}
   - {fileID: 862702861}
+  - {fileID: 588237226}

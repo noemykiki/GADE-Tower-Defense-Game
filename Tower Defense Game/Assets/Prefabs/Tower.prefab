@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7789195184469016984}
   - component: {fileID: 6037345162067728853}
   - component: {fileID: 4206096512657042202}
+  - component: {fileID: -1059605261073258825}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -57,7 +58,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a29f29985a48b944aab9e8b13292ffa7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105,6 +106,7 @@ MonoBehaviour:
   range: 6
   damage: 15
   fireRate: 1
+  destructionEffect: {fileID: 6011854308344097127, guid: 43f792b51c702ee4b98ae15c9afcd4ec, type: 3}
   healthBarPrefab: {fileID: 2995584287842919764, guid: 84f5443389eae3a478351006e49f882e, type: 3}
   currentTarget: {fileID: 0}
   bullet: {fileID: 1513752142762230993, guid: 7b6c91992e08a4140b1cb564ea6820cc, type: 3}
@@ -196,6 +198,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-1059605261073258825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6566388170333578871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156b83cfb0676ec43865d0757f4ca582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.1
+  shakeAmount: 0.1
+  shakeDuration: 0.2
+  shakeFrequency: 20
 --- !u!1 &6783855689512237975
 GameObject:
   m_ObjectHideFlags: 0

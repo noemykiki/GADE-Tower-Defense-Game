@@ -8,6 +8,7 @@ public class Castle : MonoBehaviour
     [SerializeField] public static int mainHealth;
     public static int healthLeft;
     public int damageTaken;
+    private DamageEffectController damageFlash;
 
     void Update()
     {
@@ -16,6 +17,7 @@ public class Castle : MonoBehaviour
     
     void Start()
     {
+        damageFlash = GetComponent<DamageEffectController>();
         mainHealth = 500;
         healthLeft = mainHealth;
         
@@ -26,6 +28,11 @@ public class Castle : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
+        if (damageFlash != null)
+        {
+            damageFlash.TriggerDamageEffects();
+        }
         healthLeft = mainHealth -= damageTaken;
         Destroy(collision.gameObject);
     }
