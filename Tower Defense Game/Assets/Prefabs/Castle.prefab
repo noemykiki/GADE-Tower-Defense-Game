@@ -46,6 +46,8 @@ GameObject:
   - component: {fileID: 1637850283840935949}
   - component: {fileID: 7417420075946936770}
   - component: {fileID: 160792307704890674}
+  - component: {fileID: 6360785019402665113}
+  - component: {fileID: -1971976697277026170}
   m_Layer: 0
   m_Name: Castle
   m_TagString: Untagged
@@ -89,7 +91,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a29f29985a48b944aab9e8b13292ffa7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -206,7 +208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castle: {fileID: 5019638471587982641}
-  mainHealth: 500
   damageTaken: 35
 --- !u!114 &7417420075946936770
 MonoBehaviour:
@@ -224,6 +225,7 @@ MonoBehaviour:
   range: 8
   damage: 5
   fireRate: 1
+  destructionEffect: {fileID: 6011854308344097127, guid: 43f792b51c702ee4b98ae15c9afcd4ec, type: 3}
   healthBarPrefab: {fileID: 9012147724185386571, guid: 3791d425aca6a0f4596aef44a2f8362c, type: 3}
   currentTarget: {fileID: 0}
   bullet: {fileID: 1513752142762230993, guid: 7b6c91992e08a4140b1cb564ea6820cc, type: 3}
@@ -243,3 +245,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivot: {fileID: 6972273488332910252}
   tower: {fileID: 7417420075946936770}
+--- !u!114 &6360785019402665113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5019638471587982641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156b83cfb0676ec43865d0757f4ca582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.1
+  shakeAmount: 0.1
+  shakeDuration: 0.2
+  shakeFrequency: 20
+--- !u!210 &-1971976697277026170
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5019638471587982641}
+  m_Enabled: 1
+  m_SortingLayerID: -1576491295
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_SortAtRoot: 0

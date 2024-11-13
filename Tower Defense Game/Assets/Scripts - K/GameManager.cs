@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Threading;
 
 //This script deals with basic game admin tasks
 public class GameManager : MonoBehaviour
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
         
         if (Castle.healthLeft <= 0)
         {
+            Time.timeScale = 0f;
             gameOverScreen.SetActive(true);
         }
     }
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
     {
         // Initialize or start the enemy spawning when the game starts
         enemySpawn.StartSpawning();
+        Time.timeScale = 1f;
     }
 
     public void RestartGame()
@@ -62,6 +65,7 @@ public class GameManager : MonoBehaviour
         // Stop existing coroutines and restart enemy spawning
         enemySpawn.StopSpawning();
         enemySpawn.StartSpawning();
+        Time.timeScale = 1f;
     }
 
 }

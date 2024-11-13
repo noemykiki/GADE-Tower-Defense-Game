@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3043579517511229125
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -4982321832841794560, guid: 257112e32aec1b144b23ee4943538752, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.9285714
+      objectReference: {fileID: 0}
+    - target: {fileID: -4982321832841794560, guid: 257112e32aec1b144b23ee4943538752, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.6428572
+      objectReference: {fileID: 0}
+    - target: {fileID: -3471145369465029944, guid: 257112e32aec1b144b23ee4943538752, type: 3}
+      propertyPath: towerHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1775481363087394040, guid: 257112e32aec1b144b23ee4943538752, type: 3}
+      propertyPath: m_Name
+      value: TankTower Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405475270493779603, guid: 257112e32aec1b144b23ee4943538752, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -779402560, guid: 18c40f12bdceee24f87a8a768c65cf7e, type: 3}
+    - target: {fileID: 6788804183369945583, guid: 257112e32aec1b144b23ee4943538752, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788804183369945583, guid: 257112e32aec1b144b23ee4943538752, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788804183369945583, guid: 257112e32aec1b144b23ee4943538752, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788804183369945583, guid: 257112e32aec1b144b23ee4943538752, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788804183369945583, guid: 257112e32aec1b144b23ee4943538752, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788804183369945583, guid: 257112e32aec1b144b23ee4943538752, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788804183369945583, guid: 257112e32aec1b144b23ee4943538752, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788804183369945583, guid: 257112e32aec1b144b23ee4943538752, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788804183369945583, guid: 257112e32aec1b144b23ee4943538752, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788804183369945583, guid: 257112e32aec1b144b23ee4943538752, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 257112e32aec1b144b23ee4943538752, type: 3}

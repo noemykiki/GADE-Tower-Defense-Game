@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 199530354728444186}
   - component: {fileID: 7250158472720909834}
   - component: {fileID: 2995584287842919764}
+  - component: {fileID: 2436619802138002603}
   m_Layer: 0
   m_Name: Square 1
   m_TagString: Untagged
@@ -101,6 +102,18 @@ MonoBehaviour:
   backgroundRenderer: {fileID: 7250158472720909834}
   fillRenderer: {fileID: 1622673795366461434}
   maxHealth: 0
+--- !u!210 &2436619802138002603
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098902152313052523}
+  m_Enabled: 1
+  m_SortingLayerID: 783234703
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &4466006066531216120
 GameObject:
   m_ObjectHideFlags: 0

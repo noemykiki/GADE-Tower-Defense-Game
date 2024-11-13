@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -2358944305869051434}
   - component: {fileID: -2485666390795510242}
   - component: {fileID: 772656994682797262}
+  - component: {fileID: 2999914606897606014}
   m_Layer: 0
   m_Name: BombEnemy
   m_TagString: Untagged
@@ -57,7 +58,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a29f29985a48b944aab9e8b13292ffa7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -199,6 +200,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivot: {fileID: 7022839863138389472, guid: 3a78948c6fca16c48963d43c43efa1e8, type: 3}
   enemy: {fileID: -2485666390795510242}
+--- !u!114 &2999914606897606014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579824788770285090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156b83cfb0676ec43865d0757f4ca582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.1
+  shakeAmount: 0.1
+  shakeDuration: 0.2
+  shakeFrequency: 20
 --- !u!1001 &2967871614670830804
 PrefabInstance:
   m_ObjectHideFlags: 0
